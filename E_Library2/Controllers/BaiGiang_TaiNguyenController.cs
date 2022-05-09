@@ -24,14 +24,30 @@ namespace E_Library2.Controllers
         // GET: api/BaiGiang_TaiNguyen
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BaiGiang_TaiNguyen>>> BaiGiang_TaiNguyen(bool phanloai)
+        public async Task<ActionResult<IEnumerable<BaiGiang_TaiNguyen>>> BaiGiang_TaiNguyen(bool phanloai,string mon=null, string ten=null)
         {
             if (phanloai == true)
             {
-                return await _context.BaiGiang_TaiNguyen.Where(n=>n.PhanLoai==true).ToListAsync();
+                if(mon!=null)
+                {
+                    return await _context.BaiGiang_TaiNguyen.Where(n => n.PhanLoai == true && n.MaMon==mon).ToListAsync();
+                }
+                if (ten!=null)
+                {
+                    return await _context.BaiGiang_TaiNguyen.Where(n => n.PhanLoai == true && n.Ten.Contains(ten)).ToListAsync();
+                }
+                return await _context.BaiGiang_TaiNguyen.Where(n => n.PhanLoai == true ).ToListAsync();
             }
             else
             {
+                if (mon != null)
+                {
+                    return await _context.BaiGiang_TaiNguyen.Where(n => n.PhanLoai == false && n.MaMon == mon).ToListAsync();
+                }
+                if (ten != null)
+                {
+                    return await _context.BaiGiang_TaiNguyen.Where(n => n.PhanLoai == false && n.Ten.Contains(ten)).ToListAsync();
+                }
                 return await _context.BaiGiang_TaiNguyen.Where(n => n.PhanLoai == false).ToListAsync();
             }
         }

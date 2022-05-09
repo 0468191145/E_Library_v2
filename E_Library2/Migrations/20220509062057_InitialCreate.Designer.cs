@@ -4,14 +4,16 @@ using E_Library2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_Library2.Migrations
 {
     [DbContext(typeof(E_Library2Context))]
-    partial class E_Library2ContextModelSnapshot : ModelSnapshot
+    [Migration("20220509062057_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,6 +252,9 @@ namespace E_Library2.Migrations
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VaiTro")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

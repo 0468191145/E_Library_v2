@@ -31,5 +31,7 @@ namespace E_Library2.Data
         public DbSet<E_Libary.Models.NguoiDung> NguoiDung { get; set; }
 
         public DbSet<E_Libary.Models.Role> Role { get; set; }
+
+        public DbSet<E_Libary.Models.TaiKhoan> TaiKhoan { get; set; }
     }
 }
